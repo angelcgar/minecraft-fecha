@@ -1,0 +1,250 @@
+---
+import { SITE_CONFIG, DESIGN_TOKENS } from '../config/constants';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = SITE_CONFIG.title,
+  description = SITE_CONFIG.description,
+  ogImage = SITE_CONFIG.ogImage,
+} = Astro.props;
+
+const siteUrl = Astro.site || new URL('http://localhost:4321');
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const ogImageUrl = new URL(ogImage, siteUrl);
+---
+
+<!doctype html>
+<html lang={SITE_CONFIG.locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={SITE_CONFIG.locale} />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    
+    <meta name="theme-color" content={DESIGN_TOKENS.colors.primary} />
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <link rel="preload" href="/fonts/space-grotesk-v22-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/work-sans-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/fonts/space-grotesk-v22-latin-300.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/space-grotesk-v22-latin-regular.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/space-grotesk-v22-latin-500.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/space-grotesk-v22-latin-600.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/space-grotesk-v22-latin-700.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/work-sans-v24-latin-regular.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/work-sans-v24-latin-500.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/work-sans-v24-latin-600.woff2') format('woff2');
+  }
+
+  :root {
+    --primary: #8cda70;
+    --primary-dark: #3c8527;
+    --primary-container: #2d6b1f;
+    --on-primary: #ffffff;
+    
+    --secondary: #e2c0a9;
+    --secondary-dark: #5c4433;
+    --secondary-container: #4a3628;
+    --on-secondary: #1a1410;
+    
+    --tertiary: #a2c9ff;
+    --tertiary-dark: #0077d0;
+    --tertiary-container: #005a9e;
+    --on-tertiary: #003258;
+    
+    --surface: #1a1c1e;
+    --surface-dim: #121416;
+    --surface-container-lowest: #0d0e10;
+    --surface-container-low: #1a1c1e;
+    --surface-container: #1e2022;
+    --surface-container-high: #282a2c;
+    --surface-container-highest: #333537;
+    --surface-variant: #42474e;
+    
+    --on-surface: #e2e2e5;
+    --on-surface-variant: #c2c7ce;
+    --outline: #8c9199;
+    --outline-variant: #42474e;
+    
+    --error: #ffb4ab;
+    --on-error: #690005;
+    
+    --display-lg: 3.5rem;
+    --display-md: 2.75rem;
+    --display-sm: 2rem;
+    --headline-lg: 2rem;
+    --headline-md: 1.75rem;
+    --headline-sm: 1.5rem;
+    --title-lg: 1.375rem;
+    --title-md: 1rem;
+    --title-sm: 0.875rem;
+    --body-lg: 1rem;
+    --body-md: 0.875rem;
+    --body-sm: 0.75rem;
+    --label-lg: 0.875rem;
+    --label-md: 0.75rem;
+    --label-sm: 0.6875rem;
+    
+    --spacing-4: 0.25rem;
+    --spacing-8: 0.5rem;
+    --spacing-12: 0.75rem;
+    --spacing-16: 1rem;
+    --spacing-20: 1.25rem;
+    --spacing-24: 1.5rem;
+    --spacing-32: 2rem;
+    --spacing-40: 2.5rem;
+    --spacing-48: 3rem;
+    --spacing-64: 4rem;
+    --spacing-80: 5rem;
+    --spacing-96: 6rem;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-family: 'Work Sans', system-ui, sans-serif;
+    background: var(--surface);
+    color: var(--on-surface);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>

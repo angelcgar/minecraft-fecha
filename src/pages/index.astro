@@ -1,11 +1,389 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Countdown from '../components/Countdown.astro';
+import { NEXT_UPDATE_DATE, SITE_CONFIG } from '../config/constants';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout>
+  <main class="page-container">
+    <div class="hero-section">
+      <div class="hero-background">
+        <div class="hero-overlay"></div>
+        <img 
+          src="/assets/Gemini_Generated_Image_z0mdxz0mdxz0mdxz.png" 
+          alt="Minecraft landscape with floating islands and lush vegetation"
+          class="hero-image"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      
+      <div class="hero-content">
+        <header class="hero-header">
+          <h1 class="hero-title">
+            <span class="title-line">Próxima</span>
+            <span class="title-line title-highlight">Actualización</span>
+          </h1>
+          <p class="hero-description">
+            Prepárate para explorar nuevos biomas, criaturas y aventuras épicas en el mundo de Minecraft
+          </p>
+        </header>
+
+        <section 
+          class="countdown-section" 
+          aria-labelledby="countdown-heading"
+        >
+          <h2 id="countdown-heading" class="countdown-heading">
+            Tiempo restante
+          </h2>
+          <Countdown targetDate={NEXT_UPDATE_DATE} className="main-countdown" />
+        </section>
+
+        <div class="cta-section">
+          <a 
+            href="https://www.minecraft.net" 
+            class="cta-button cta-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visitar sitio oficial
+          </a>
+          <a 
+            href="#features" 
+            class="cta-button cta-secondary"
+          >
+            Conocer más
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <section id="features" class="features-section" aria-labelledby="features-heading">
+      <div class="features-container">
+        <h2 id="features-heading" class="features-title">
+          ¿Qué esperar?
+        </h2>
+        
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🌍</div>
+            <h3 class="feature-title">Nuevos Biomas</h3>
+            <p class="feature-description">
+              Explora paisajes nunca antes vistos con vegetación única y recursos especiales
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">⚔️</div>
+            <h3 class="feature-title">Criaturas Épicas</h3>
+            <p class="feature-description">
+              Enfréntate a nuevos mobs y descubre aliados que te acompañarán en tu aventura
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🏗️</div>
+            <h3 class="feature-title">Bloques Innovadores</h3>
+            <p class="feature-description">
+              Construye con materiales revolucionarios que expandirán tu creatividad
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">✨</div>
+            <h3 class="feature-title">Mecánicas Mejoradas</h3>
+            <p class="feature-description">
+              Disfruta de optimizaciones y nuevas funcionalidades que enriquecen la experiencia
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p class="footer-text">
+        Este sitio no está afiliado con Mojang Studios o Microsoft. Minecraft es una marca registrada de Mojang Synergies AB.
+      </p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(26, 28, 30, 0.85) 0%,
+      rgba(45, 107, 31, 0.75) 50%,
+      rgba(26, 28, 30, 0.95) 100%
+    );
+    backdrop-filter: blur(2px);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1400px;
+    padding: var(--spacing-32);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-64);
+  }
+
+  @media (min-width: 768px) {
+    .hero-content {
+      padding: var(--spacing-64);
+      gap: var(--spacing-80);
+    }
+  }
+
+  .hero-header {
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 700;
+    margin: 0 0 var(--spacing-24) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
+  }
+
+  .title-line {
+    display: block;
+    color: var(--on-surface);
+  }
+
+  .title-highlight {
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-description {
+    font-size: var(--body-lg);
+    color: var(--on-surface-variant);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  @media (min-width: 768px) {
+    .hero-description {
+      font-size: var(--title-lg);
+    }
+  }
+
+  .countdown-section {
+    background: var(--surface-container-low);
+    padding: var(--spacing-48) var(--spacing-24);
+    border-radius: 0;
+  }
+
+  @media (min-width: 768px) {
+    .countdown-section {
+      padding: var(--spacing-64) var(--spacing-48);
+    }
+  }
+
+  .countdown-heading {
+    font-size: var(--headline-md);
+    font-weight: 600;
+    text-align: center;
+    color: var(--on-surface);
+    margin: 0 0 var(--spacing-48) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .cta-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-24);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-16) var(--spacing-40);
+    font-family: 'Work Sans', sans-serif;
+    font-size: var(--label-lg);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 0;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+    min-width: 200px;
+  }
+
+  .cta-primary {
+    background: var(--primary);
+    color: var(--on-primary);
+    box-shadow: 0 2px 0 0 var(--primary-container);
+  }
+
+  .cta-primary:hover,
+  .cta-primary:focus-visible {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 0 var(--primary-container);
+    text-decoration: none;
+  }
+
+  .cta-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 0 0 var(--primary-container);
+  }
+
+  .cta-secondary {
+    background: var(--surface-container-high);
+    color: var(--on-surface);
+    border: 1px solid rgba(140, 218, 112, 0.15);
+  }
+
+  .cta-secondary:hover,
+  .cta-secondary:focus-visible {
+    background: var(--surface-container-highest);
+    border-color: var(--primary);
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .features-section {
+    background: var(--surface-dim);
+    padding: var(--spacing-80) var(--spacing-24);
+  }
+
+  @media (min-width: 768px) {
+    .features-section {
+      padding: var(--spacing-96) var(--spacing-48);
+    }
+  }
+
+  .features-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .features-title {
+    font-size: var(--display-md);
+    font-weight: 700;
+    text-align: center;
+    color: var(--primary);
+    margin: 0 0 var(--spacing-64) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-32);
+  }
+
+  @media (min-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .feature-card {
+    background: var(--surface-container);
+    padding: var(--spacing-40) var(--spacing-32);
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-16);
+    transition: transform 0.2s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: var(--spacing-8);
+  }
+
+  .feature-title {
+    font-size: var(--title-lg);
+    font-weight: 600;
+    color: var(--on-surface);
+    margin: 0;
+  }
+
+  .feature-description {
+    font-size: var(--body-md);
+    color: var(--on-surface-variant);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .page-footer {
+    background: var(--surface-container-lowest);
+    padding: var(--spacing-40) var(--spacing-24);
+    text-align: center;
+  }
+
+  .footer-text {
+    font-size: var(--body-sm);
+    color: var(--outline);
+    margin: 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-image {
+      animation: subtle-zoom 20s ease-in-out infinite alternate;
+    }
+  }
+
+  @keyframes subtle-zoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.05);
+    }
+  }
+</style>

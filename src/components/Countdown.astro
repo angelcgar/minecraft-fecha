@@ -1,0 +1,274 @@
+---
+import type { CountdownConfig } from '../types/countdown';
+
+interface Props {
+  targetDate: Date;
+  className?: string;
+}
+
+const { targetDate, className = '' } = Astro.props;
+---
+
+<div class={`countdown-container ${className}`} data-target-date={targetDate.toISOString()}>
+  <div class="countdown-grid">
+    <div class="time-unit" data-unit="days">
+      <div class="time-value" aria-live="polite" aria-atomic="true">
+        <span class="digit" data-digit="days">00</span>
+      </div>
+      <div class="time-label">
+        <span class="label-text" data-label="days">días</span>
+      </div>
+    </div>
+
+    <div class="time-unit" data-unit="hours">
+      <div class="time-value" aria-live="polite" aria-atomic="true">
+        <span class="digit" data-digit="hours">00</span>
+      </div>
+      <div class="time-label">
+        <span class="label-text" data-label="hours">horas</span>
+      </div>
+    </div>
+
+    <div class="time-unit" data-unit="minutes">
+      <div class="time-value" aria-live="polite" aria-atomic="true">
+        <span class="digit" data-digit="minutes">00</span>
+      </div>
+      <div class="time-label">
+        <span class="label-text" data-label="minutes">minutos</span>
+      </div>
+    </div>
+
+    <div class="time-unit" data-unit="seconds">
+      <div class="time-value" aria-live="polite" aria-atomic="true">
+        <span class="digit" data-digit="seconds">00</span>
+      </div>
+      <div class="time-label">
+        <span class="label-text" data-label="seconds">segundos</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="expired-message" role="alert" aria-live="assertive" hidden>
+    <h2 class="expired-title">¡La actualización ya está disponible!</h2>
+    <p class="expired-description">Es hora de explorar las nuevas características</p>
+  </div>
+</div>
+
+<script>
+  import { calculateCountdown, formatTimeUnit, TIME_UNIT_LABELS } from '../types/countdown';
+  import type { TimeUnit } from '../types/countdown';
+
+  class CountdownTimer {
+    private container: HTMLElement;
+    private targetDate: Date;
+    private intervalId: number | null = null;
+    private digitElements: Map<TimeUnit, HTMLElement>;
+    private labelElements: Map<TimeUnit, HTMLElement>;
+    private expiredMessage: HTMLElement;
+
+    constructor(container: HTMLElement) {
+      this.container = container;
+      const targetDateStr = container.dataset.targetDate;
+      
+      if (!targetDateStr) {
+        throw new Error('Target date not provided');
+      }
+
+      this.targetDate = new Date(targetDateStr);
+      
+      this.digitElements = new Map([
+        ['days', container.querySelector('[data-digit="days"]')!],
+        ['hours', container.querySelector('[data-digit="hours"]')!],
+        ['minutes', container.querySelector('[data-digit="minutes"]')!],
+        ['seconds', container.querySelector('[data-digit="seconds"]')!],
+      ]);
+
+      this.labelElements = new Map([
+        ['days', container.querySelector('[data-label="days"]')!],
+        ['hours', container.querySelector('[data-label="hours"]')!],
+        ['minutes', container.querySelector('[data-label="minutes"]')!],
+        ['seconds', container.querySelector('[data-label="seconds"]')!],
+      ]);
+
+      this.expiredMessage = container.querySelector('.expired-message')!;
+      
+      this.init();
+    }
+
+    private init(): void {
+      this.update();
+      this.intervalId = window.setInterval(() => this.update(), 1000);
+    }
+
+    private update(): void {
+      const state = calculateCountdown(this.targetDate);
+
+      if (state.isExpired) {
+        this.handleExpiration();
+        return;
+      }
+
+      this.updateDisplay('days', state.days);
+      this.updateDisplay('hours', state.hours);
+      this.updateDisplay('minutes', state.minutes);
+      this.updateDisplay('seconds', state.seconds);
+    }
+
+    private updateDisplay(unit: TimeUnit, value: number): void {
+      const digitEl = this.digitElements.get(unit);
+      const labelEl = this.labelElements.get(unit);
+
+      if (digitEl) {
+        const formattedValue = value.toString().padStart(2, '0');
+        if (digitEl.textContent !== formattedValue) {
+          digitEl.textContent = formattedValue;
+        }
+      }
+
+      if (labelEl) {
+        const label = formatTimeUnit(value, unit);
+        if (labelEl.textContent !== label) {
+          labelEl.textContent = label;
+        }
+      }
+    }
+
+    private handleExpiration(): void {
+      if (this.intervalId !== null) {
+        clearInterval(this.intervalId);
+        this.intervalId = null;
+      }
+
+      this.container.querySelector('.countdown-grid')?.setAttribute('hidden', '');
+      this.expiredMessage.removeAttribute('hidden');
+    }
+
+    public destroy(): void {
+      if (this.intervalId !== null) {
+        clearInterval(this.intervalId);
+      }
+    }
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    const containers = document.querySelectorAll<HTMLElement>('.countdown-container');
+    const timers: CountdownTimer[] = [];
+
+    containers.forEach((container) => {
+      timers.push(new CountdownTimer(container));
+    });
+
+    document.addEventListener('astro:before-preparation', () => {
+      timers.forEach((timer) => timer.destroy());
+    });
+  });
+</script>
+
+<style>
+  .countdown-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--spacing-24, 1.5rem);
+    padding: var(--spacing-32, 2rem);
+  }
+
+  @media (min-width: 768px) {
+    .countdown-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-32, 2rem);
+      padding: var(--spacing-48, 3rem);
+    }
+  }
+
+  .time-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-16, 1rem);
+    background: var(--surface-container-high, #282a2c);
+    padding: var(--spacing-32, 2rem) var(--spacing-24, 1.5rem);
+    border-radius: 0;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+
+  .time-unit::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary, #8cda70);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .time-unit:hover::before {
+    opacity: 1;
+  }
+
+  .time-value {
+    font-family: 'Space Grotesk', monospace;
+    font-size: var(--display-lg, 3.5rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--primary, #8cda70);
+    letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 767px) {
+    .time-value {
+      font-size: var(--display-md, 2.75rem);
+    }
+  }
+
+  .digit {
+    display: inline-block;
+    min-width: 2ch;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .time-label {
+    font-family: 'Work Sans', sans-serif;
+    font-size: var(--label-md, 0.75rem);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--on-surface-variant, #c2c7ce);
+  }
+
+  .label-text {
+    display: inline-block;
+  }
+
+  .expired-message {
+    text-align: center;
+    padding: var(--spacing-64, 4rem) var(--spacing-32, 2rem);
+    background: var(--surface-container-highest, #333537);
+    border-radius: 0;
+  }
+
+  .expired-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--display-md, 2.75rem);
+    font-weight: 700;
+    color: var(--primary, #8cda70);
+    margin: 0 0 var(--spacing-16, 1rem) 0;
+    line-height: 1.2;
+  }
+
+  .expired-description {
+    font-family: 'Work Sans', sans-serif;
+    font-size: var(--body-lg, 1rem);
+    color: var(--on-surface-variant, #c2c7ce);
+    margin: 0;
+  }
+</style>

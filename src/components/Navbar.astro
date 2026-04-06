@@ -1,0 +1,160 @@
+---
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const navLinks: NavLink[] = [
+  { label: 'CHRONICLES', href: '#chronicles' },
+  { label: 'FEATURES', href: '#features' },
+  { label: 'COMMUNITY', href: '#community' },
+  { label: 'SUPPORT', href: '#support' },
+];
+---
+
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="navbar-container">
+    <a href="/" class="navbar-logo" aria-label="Minecraft Update Home">
+      MINECRAFT UPDATE
+    </a>
+    
+    <ul class="navbar-links" role="list">
+      {navLinks.map((link) => (
+        <li>
+          <a href={link.href} class="navbar-link">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    
+    <a href="#get-update" class="navbar-cta">
+      GET THE UPDATE
+    </a>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(140, 218, 112, 0.1);
+  }
+
+  .navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-16) var(--spacing-32);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-48);
+  }
+
+  .navbar-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--body-lg);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .navbar-logo:hover,
+  .navbar-logo:focus-visible {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .navbar-links {
+    display: none;
+    list-style: none;
+    gap: var(--spacing-40);
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 768px) {
+    .navbar-links {
+      display: flex;
+    }
+  }
+
+  .navbar-link {
+    font-family: 'Work Sans', sans-serif;
+    font-size: var(--body-sm);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    text-decoration: none;
+    padding: var(--spacing-8) 0;
+    position: relative;
+    transition: color 0.2s ease;
+  }
+
+  .navbar-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+  }
+
+  .navbar-link:hover,
+  .navbar-link:focus-visible {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .navbar-link:hover::after,
+  .navbar-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .navbar-cta {
+    font-family: 'Work Sans', sans-serif;
+    font-size: var(--body-sm);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #000000;
+    background: var(--primary);
+    padding: var(--spacing-12) var(--spacing-24);
+    border-radius: 0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: none;
+  }
+
+  .navbar-cta:hover,
+  .navbar-cta:focus-visible {
+    background: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 767px) {
+    .navbar-container {
+      padding: var(--spacing-12) var(--spacing-20);
+    }
+
+    .navbar-logo {
+      font-size: var(--body-md);
+    }
+
+    .navbar-cta {
+      font-size: var(--body-sm);
+      padding: var(--spacing-8) var(--spacing-16);
+    }
+  }
+</style>

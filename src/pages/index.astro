@@ -1,10 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
 import Countdown from '../components/Countdown.astro';
 import { NEXT_UPDATE_DATE, SITE_CONFIG } from '../config/constants';
 ---
 
 <BaseLayout>
+  <Navbar />
+  
   <main class="page-container">
     <div class="hero-section">
       <div class="hero-background">
@@ -19,42 +22,24 @@ import { NEXT_UPDATE_DATE, SITE_CONFIG } from '../config/constants';
       </div>
       
       <div class="hero-content">
+        <div class="badge">THE NEXT CHAPTER IS NEAR</div>
+        
         <header class="hero-header">
           <h1 class="hero-title">
-            <span class="title-line">Próxima</span>
-            <span class="title-line title-highlight">Actualización</span>
+            <span class="title-main">UNEARTH THE</span>
+            <span class="title-highlight">ANCIENT</span>
           </h1>
-          <p class="hero-description">
-            Prepárate para explorar nuevos biomas, criaturas y aventuras épicas en el mundo de Minecraft
-          </p>
         </header>
 
         <section 
           class="countdown-section" 
           aria-labelledby="countdown-heading"
         >
-          <h2 id="countdown-heading" class="countdown-heading">
-            Tiempo restante
+          <h2 id="countdown-heading" class="visually-hidden">
+            Tiempo restante para la actualización
           </h2>
           <Countdown targetDate={NEXT_UPDATE_DATE} className="main-countdown" />
         </section>
-
-        <div class="cta-section">
-          <a 
-            href="https://www.minecraft.net" 
-            class="cta-button cta-primary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Visitar sitio oficial
-          </a>
-          <a 
-            href="#features" 
-            class="cta-button cta-secondary"
-          >
-            Conocer más
-          </a>
-        </div>
       </div>
     </div>
 

@@ -167,22 +167,19 @@ const { targetDate, className = '' } = Astro.props;
 <style>
   .countdown-container {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
   }
 
   .countdown-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: var(--spacing-24, 1.5rem);
-    padding: var(--spacing-32, 2rem);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--spacing-48, 3rem);
+    padding: 0;
   }
 
-  @media (min-width: 768px) {
+  @media (max-width: 767px) {
     .countdown-grid {
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--spacing-32, 2rem);
-      padding: var(--spacing-48, 3rem);
+      gap: var(--spacing-24, 1.5rem);
     }
   }
 
@@ -190,43 +187,20 @@ const { targetDate, className = '' } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-16, 1rem);
-    background: var(--surface-container-high, #282a2c);
-    padding: var(--spacing-32, 2rem) var(--spacing-24, 1.5rem);
+    gap: var(--spacing-12, 0.75rem);
+    background: transparent;
+    padding: 0;
     border-radius: 0;
     position: relative;
-    transition: transform 0.2s ease;
-  }
-
-  .time-unit::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--primary, #8cda70);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .time-unit:hover::before {
-    opacity: 1;
   }
 
   .time-value {
-    font-family: 'Space Grotesk', monospace;
-    font-size: var(--display-lg, 3.5rem);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 700;
     line-height: 1;
     color: var(--primary, #8cda70);
     letter-spacing: -0.02em;
-  }
-
-  @media (max-width: 767px) {
-    .time-value {
-      font-size: var(--display-md, 2.75rem);
-    }
   }
 
   .digit {
@@ -238,10 +212,10 @@ const { targetDate, className = '' } = Astro.props;
 
   .time-label {
     font-family: 'Work Sans', sans-serif;
-    font-size: var(--label-md, 0.75rem);
+    font-size: var(--body-sm, 0.75rem);
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     color: var(--on-surface-variant, #c2c7ce);
   }
 
@@ -252,7 +226,7 @@ const { targetDate, className = '' } = Astro.props;
   .expired-message {
     text-align: center;
     padding: var(--spacing-64, 4rem) var(--spacing-32, 2rem);
-    background: var(--surface-container-highest, #333537);
+    background: transparent;
     border-radius: 0;
   }
 

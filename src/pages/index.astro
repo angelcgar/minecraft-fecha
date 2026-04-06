@@ -48,10 +48,160 @@ import { NEXT_UPDATE_DATE, SITE_CONFIG } from '../config/constants';
 
     <FeaturesGrid />
 
-    <footer class="bg-black/50 py-10 px-6 text-center">
-      <p class="text-xs text-outline max-w-[800px] mx-auto font-['Work_Sans']">
-        Este sitio no está afiliado con Mojang Studios o Microsoft. Minecraft es una marca registrada de Mojang Synergies AB.
-      </p>
+    <!-- Sección: THE WORLD IS YOURS TO REMAKE -->
+    <section class="relative w-full bg-[#0a0a0a] py-32 sm:py-40 lg:py-48">
+      <!-- Glow sutil superior -->
+      <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#4ade80]/20 to-transparent"></div>
+      
+      <div class="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12">
+        <div class="flex flex-col items-center gap-8 sm:gap-10 lg:gap-12">
+          <!-- Título Principal -->
+          <header class="text-center">
+            <h2 class="flex flex-col gap-1 font-bold font-['Space_Grotesk'] uppercase leading-[0.95] tracking-tight">
+              <span class="text-4xl text-white sm:text-5xl lg:text-6xl">
+                THE WORLD IS YOURS TO
+              </span>
+              <span class="text-5xl text-[#4ade80] sm:text-6xl lg:text-7xl" style="font-style: italic;">
+                REMAKE
+              </span>
+            </h2>
+          </header>
+
+          <!-- Subtexto -->
+          <p class="max-w-[500px] text-center font-['Work_Sans'] text-sm leading-relaxed text-[#a8a8a8] sm:text-base">
+            Prepare your tools. Sharpen your swords. The update arrives in 12 days. Are you ready to dive back in?
+          </p>
+
+          <!-- Botones CTA -->
+          <div class="flex flex-col gap-4 sm:flex-row sm:gap-5">
+            <a 
+              href="#" 
+              class="inline-flex items-center justify-center bg-[#4ade80] px-8 py-4 font-['Work_Sans'] text-xs font-bold uppercase tracking-widest text-black transition-all duration-200 hover:bg-[#22c55e] sm:px-10 sm:text-sm"
+            >
+              GET READY NOW
+            </a>
+            <a 
+              href="#" 
+              class="inline-flex items-center justify-center bg-[#1a1a1a] px-8 py-4 font-['Work_Sans'] text-xs font-bold uppercase tracking-widest text-white transition-all duration-200 hover:bg-[#252525] sm:px-10 sm:text-sm"
+            >
+              VIEW PATCH NOTES
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Mejorado -->
+    <footer class="w-full border-t border-white/5 bg-[#0a0a0a]">
+      <!-- Sección principal del footer -->
+      <div class="mx-auto max-w-[1400px] px-6 py-12 sm:px-8 sm:py-16 lg:px-12">
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+          <!-- Columna 1: Marca y descripción -->
+          <div class="flex flex-col gap-4">
+            <h3 class="font-['Space_Grotesk'] text-lg font-bold uppercase tracking-wider text-[#4ade80]">
+              MINECRAFT
+            </h3>
+            <p class="font-['Work_Sans'] text-xs leading-relaxed text-white/50">
+              Explora mundos infinitos y construye todo lo que puedas imaginar. La próxima gran actualización está por llegar.
+            </p>
+            <!-- Redes sociales -->
+            <div class="flex gap-4">
+              <a href="#" class="group flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 transition-all hover:bg-[#4ade80]/10" aria-label="Twitter">
+                <svg class="h-4 w-4 text-white/40 transition-colors group-hover:text-[#4ade80]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+              <a href="#" class="group flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 transition-all hover:bg-[#4ade80]/10" aria-label="YouTube">
+                <svg class="h-4 w-4 text-white/40 transition-colors group-hover:text-[#4ade80]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+              <a href="#" class="group flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 transition-all hover:bg-[#4ade80]/10" aria-label="Discord">
+                <svg class="h-4 w-4 text-white/40 transition-colors group-hover:text-[#4ade80]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna 2: Comunidad -->
+          <div class="flex flex-col gap-4">
+            <h4 class="font-['Space_Grotesk'] text-sm font-bold uppercase tracking-wide text-white/70">
+              Comunidad
+            </h4>
+            <nav class="flex flex-col gap-3">
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                Foros Oficiales
+              </a>
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                Discord
+              </a>
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                Wiki
+              </a>
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                Soporte
+              </a>
+            </nav>
+          </div>
+
+          <!-- Columna 3: Recursos -->
+          <div class="flex flex-col gap-4">
+            <h4 class="font-['Space_Grotesk'] text-sm font-bold uppercase tracking-wide text-white/70">
+              Recursos
+            </h4>
+            <nav class="flex flex-col gap-3">
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                Notas de Parche
+              </a>
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                Guías
+              </a>
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                Press Kit
+              </a>
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                API Developers
+              </a>
+            </nav>
+          </div>
+
+          <!-- Columna 4: Legal -->
+          <div class="flex flex-col gap-4">
+            <h4 class="font-['Space_Grotesk'] text-sm font-bold uppercase tracking-wide text-white/70">
+              Legal
+            </h4>
+            <nav class="flex flex-col gap-3">
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                Privacy Policy
+              </a>
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                Terms of Use
+              </a>
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                Cookie Policy
+              </a>
+              <a href="#" class="font-['Work_Sans'] text-xs text-white/40 transition-colors hover:text-[#4ade80]">
+                Accessibility
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright y disclaimer -->
+      <div class="border-t border-white/5 bg-black/30">
+        <div class="mx-auto max-w-[1400px] px-6 py-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <p class="text-center font-['Work_Sans'] text-[10px] text-white/30 sm:text-left sm:text-xs">
+              © 2024 Mojang AB. Minecraft is a trademark of Mojang Synergies AB.
+            </p>
+            <p class="text-center font-['Work_Sans'] text-[10px] text-white/20 sm:text-right sm:text-xs">
+              Este sitio no está afiliado con Mojang Studios o Microsoft.
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
   </main>
 </BaseLayout>

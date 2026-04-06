@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Countdown from '../components/Countdown.astro';
+import FeaturesGrid from '../components/FeaturesGrid.astro';
 import { NEXT_UPDATE_DATE, SITE_CONFIG } from '../config/constants';
 ---
 
@@ -21,8 +22,8 @@ import { NEXT_UPDATE_DATE, SITE_CONFIG } from '../config/constants';
         />
       </div>
       
-      <div class="relative z-10 w-full max-w-[1400px] px-8 md:px-16 py-32 md:py-64 flex flex-col gap-16 md:gap-20">
-        <div class="bg-primary text-black text-xs font-semibold tracking-[0.15em] px-6 py-2 self-center font-['Work_Sans']">
+      <div class="relative z-10 w-full max-w-[1400px] px-8 md:px-16 py-32 md:py-64 flex flex-col items-center gap-16 md:gap-20">
+        <div class="bg-primary text-black text-xs font-semibold tracking-[0.15em] px-6 py-2 font-['Work_Sans']">
           THE NEXT CHAPTER IS NEAR
         </div>
         
@@ -34,7 +35,7 @@ import { NEXT_UPDATE_DATE, SITE_CONFIG } from '../config/constants';
         </header>
 
         <section 
-          class="w-full max-w-[900px] mx-auto" 
+          class="w-full max-w-[900px]" 
           aria-labelledby="countdown-heading"
         >
           <h2 id="countdown-heading" class="sr-only">
@@ -45,47 +46,7 @@ import { NEXT_UPDATE_DATE, SITE_CONFIG } from '../config/constants';
       </div>
     </div>
 
-    <section id="features" class="bg-surface-dim py-20 md:py-24 px-6 md:px-12" aria-labelledby="features-heading">
-      <div class="max-w-[1400px] mx-auto">
-        <h2 id="features-heading" class="text-3xl md:text-4xl font-bold text-center text-primary mb-16 uppercase tracking-wide font-['Space_Grotesk']">
-          ¿Qué esperar?
-        </h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">🌍</div>
-            <h3 class="feature-title">Nuevos Biomas</h3>
-            <p class="feature-description">
-              Explora paisajes nunca antes vistos con vegetación única y recursos especiales
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">⚔️</div>
-            <h3 class="feature-title">Criaturas Épicas</h3>
-            <p class="feature-description">
-              Enfréntate a nuevos mobs y descubre aliados que te acompañarán en tu aventura
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">🏗️</div>
-            <h3 class="feature-title">Bloques Innovadores</h3>
-            <p class="feature-description">
-              Construye con materiales revolucionarios que expandirán tu creatividad
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">✨</div>
-            <h3 class="feature-title">Mecánicas Mejoradas</h3>
-            <p class="feature-description">
-              Disfruta de optimizaciones y nuevas funcionalidades que enriquecen la experiencia
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
+    <FeaturesGrid />
 
     <footer class="bg-black/50 py-10 px-6 text-center">
       <p class="text-xs text-outline max-w-[800px] mx-auto font-['Work_Sans']">
@@ -115,24 +76,6 @@ import { NEXT_UPDATE_DATE, SITE_CONFIG } from '../config/constants';
 
   .hero-title {
     @apply text-5xl md:text-7xl lg:text-8xl font-bold m-0 flex flex-col gap-0 leading-[0.95];
-  }
-
-  .feature-card {
-    @apply bg-surface-container p-10 md:p-8 flex flex-col gap-4 transition-transform duration-200 hover:-translate-y-1;
-  }
-
-  .feature-icon {
-    @apply text-5xl leading-none mb-2;
-  }
-
-  .feature-title {
-    font-family: 'Space Grotesk', sans-serif;
-    @apply text-xl font-semibold text-on-surface m-0;
-  }
-
-  .feature-description {
-    font-family: 'Work Sans', sans-serif;
-    @apply text-sm text-on-surface-variant leading-relaxed m-0;
   }
 
   @media (prefers-reduced-motion: no-preference) {

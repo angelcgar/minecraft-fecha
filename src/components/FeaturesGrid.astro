@@ -1,0 +1,134 @@
+---
+// FeaturesGrid.astro - Sección de features estilo Minecraft
+---
+
+<section class="w-full bg-[#0f0f0f] px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+  <div class="mx-auto max-w-[1400px]">
+    <!-- Header -->
+    <div class="mb-8 flex flex-col gap-6 sm:mb-10 lg:mb-12 lg:flex-row lg:items-start lg:justify-between">
+      <div class="max-w-2xl">
+        <h2 class="mb-3 font-bold text-white text-3xl uppercase tracking-tight sm:text-4xl lg:mb-4 lg:text-5xl">
+          NEW BIOMES & MOBS
+        </h2>
+        <p class="text-[#a1a1a1] text-xs leading-relaxed sm:text-sm lg:text-base">
+          The world is expanding. Discover hidden archaeological sites and encounter creatures from the forgotten eras of the Overworld.
+        </p>
+      </div>
+      <div class="lg:pt-1">
+        <span class="font-mono text-[#4ade80] text-[10px] uppercase tracking-widest sm:text-xs">
+          VERSION 1.21 // TRAIL & TALES
+        </span>
+      </div>
+    </div>
+
+    <!-- Grid Principal -->
+    <div class="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-3">
+      <!-- Columna Izquierda (2/3) -->
+      <div class="flex flex-col gap-3 sm:gap-4 lg:col-span-2">
+        <!-- Tarjeta Grande: The Birch Overhaul -->
+        <div class="group relative overflow-hidden bg-[#1a1a1a] h-[350px] sm:h-[420px] lg:h-[460px]">
+          <img 
+            src="/assets/birch-forest.jpg" 
+            alt="The Birch Overhaul"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
+          
+          <div class="absolute bottom-0 left-0 p-6 sm:p-8 lg:p-10">
+            <h3 class="mb-3 font-bold text-white text-2xl uppercase tracking-tight sm:mb-4 sm:text-3xl lg:text-4xl">
+              THE BIRCH OVERHAUL
+            </h3>
+            <p class="mb-4 max-w-md text-[#d1d1d1] text-xs leading-relaxed sm:mb-5 sm:text-sm lg:text-base">
+              Experience the forest like never before with three-dimensional canopy layers and dynamic light scattering.
+            </p>
+            <a 
+              href="#" 
+              class="inline-flex items-center gap-2 font-medium text-[#4ade80] text-xs uppercase tracking-wide transition-all hover:gap-3 hover:text-[#22c55e] sm:text-sm"
+            >
+              EXPLORE THE WILD
+              <svg class="h-3 w-3 sm:h-4 sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta Azul: The Sniffer -->
+        <div class="group relative overflow-hidden bg-[#0ea5e9] h-[220px] sm:h-[240px] lg:h-[260px]">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#0ea5e9] to-[#0284c7]"></div>
+          
+          <div class="relative flex h-full flex-col justify-between p-6 sm:p-8 lg:p-9">
+            <div>
+              <h3 class="mb-2 font-bold text-white text-xl uppercase tracking-tight sm:mb-3 sm:text-2xl lg:text-3xl">
+                THE SNIFFER
+              </h3>
+              <p class="max-w-sm text-blue-50 text-xs leading-relaxed sm:text-sm lg:text-base">
+                Help this ancient mob find extinct seeds to grow unique flora.
+              </p>
+            </div>
+            
+            <div class="flex items-end justify-between">
+              <div class="h-28 w-28 rounded-lg bg-[#0284c7]/40 backdrop-blur-sm sm:h-32 sm:w-32 lg:h-36 lg:w-36">
+                <!-- Placeholder para imagen del Sniffer -->
+                <div class="flex h-full items-center justify-center">
+                  <svg class="h-12 w-12 text-white/20 sm:h-14 sm:w-14 lg:h-16 lg:w-16" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Derecha (1/3) - Stack Vertical -->
+      <div class="flex flex-col gap-3 sm:gap-4">
+        <!-- Tarjeta 1: Ancient Pottery -->
+        <div class="group relative overflow-hidden bg-[#1a1a1a] p-6 sm:p-7 lg:p-8 h-[180px] sm:h-[200px] lg:h-[210px]">
+          <div class="absolute top-3 right-3 sm:top-4 sm:right-4">
+            <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#4ade80]/10 sm:h-10 sm:w-10">
+              <svg class="h-4 w-4 text-[#4ade80] sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+              </svg>
+            </div>
+          </div>
+          
+          <h3 class="mb-2 font-bold text-white text-lg uppercase tracking-tight sm:mb-3 sm:text-xl lg:text-2xl">
+            ANCIENT POTTERY
+          </h3>
+          <p class="text-[#a1a1a1] text-xs leading-relaxed sm:text-sm">
+            Uncover shards and craft stories from the past.
+          </p>
+        </div>
+
+        <!-- Tarjeta 2: Redstone 2.0 -->
+        <div class="group relative overflow-hidden bg-gradient-to-br from-[#78350f] to-[#451a03] p-6 sm:p-7 lg:p-8 h-[180px] sm:h-[200px] lg:h-[210px]">
+          <h3 class="mb-2 font-bold text-white text-lg uppercase tracking-tight sm:mb-3 sm:text-xl lg:text-2xl">
+            REDSTONE 2.0
+          </h3>
+          <p class="text-orange-100/90 text-xs leading-relaxed sm:text-sm">
+            New logic gates and wireless transmission blocks.
+          </p>
+        </div>
+
+        <!-- Tarjeta 3: Creative Freedom -->
+        <div class="group relative overflow-hidden bg-[#1a1a1a] h-[220px] sm:h-[240px] lg:h-[260px]">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]"></div>
+          
+          <div class="absolute inset-0 flex items-center justify-center opacity-[0.08]">
+            <span class="font-bold text-[#4ade80] text-7xl uppercase sm:text-8xl lg:text-9xl">CRAFT</span>
+          </div>
+          
+          <div class="relative flex h-full flex-col justify-end p-6 sm:p-7 lg:p-8">
+            <h3 class="mb-2 font-bold text-white text-lg uppercase tracking-tight sm:mb-3 sm:text-xl lg:text-2xl">
+              CREATIVE FREEDOM
+            </h3>
+            <p class="text-[#a1a1a1] text-xs leading-relaxed sm:text-sm">
+              New hanging signs, bamboo wood sets, and functional bookshelves to make your home truly yours.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

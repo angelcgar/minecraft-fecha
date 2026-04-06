@@ -12,149 +12,68 @@ const navLinks: NavLink[] = [
 ];
 ---
 
-<nav class="navbar" role="navigation" aria-label="Main navigation">
-  <div class="navbar-container">
-    <a href="/" class="navbar-logo" aria-label="Minecraft Update Home">
+<nav class="fixed top-0 left-0 right-0 z-[1000] bg-black/95 backdrop-blur-lg border-b border-primary/10" role="navigation" aria-label="Main navigation">
+  <div class="max-w-[1400px] mx-auto px-4 md:px-8 py-3 md:py-4 flex items-center justify-between gap-8 md:gap-12">
+    <a href="/" class="nav-logo" aria-label="Minecraft Update Home">
       MINECRAFT UPDATE
     </a>
     
-    <ul class="navbar-links" role="list">
+    <ul class="hidden md:flex list-none gap-10 m-0 p-0" role="list">
       {navLinks.map((link) => (
         <li>
-          <a href={link.href} class="navbar-link">
+          <a href={link.href} class="nav-link">
             {link.label}
           </a>
         </li>
       ))}
     </ul>
     
-    <a href="#get-update" class="navbar-cta">
+    <a href="#get-update" class="nav-cta">
       GET THE UPDATE
     </a>
   </div>
 </nav>
 
-<style>
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(140, 218, 112, 0.1);
-  }
+<style is:global>
+  @reference "../styles/global.css";
 
-  .navbar-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: var(--spacing-16) var(--spacing-32);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--spacing-48);
-  }
-
-  .navbar-logo {
+  .nav-logo {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: var(--body-lg);
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--primary);
-    text-decoration: none;
-    transition: color 0.2s ease;
+    @apply text-base md:text-lg font-bold tracking-wider text-primary no-underline transition-colors duration-200;
   }
 
-  .navbar-logo:hover,
-  .navbar-logo:focus-visible {
-    color: #ffffff;
-    text-decoration: none;
+  .nav-logo:hover,
+  .nav-logo:focus-visible {
+    @apply text-white no-underline;
   }
 
-  .navbar-links {
-    display: none;
-    list-style: none;
-    gap: var(--spacing-40);
-    margin: 0;
-    padding: 0;
-  }
-
-  @media (min-width: 768px) {
-    .navbar-links {
-      display: flex;
-    }
-  }
-
-  .navbar-link {
+  .nav-link {
     font-family: 'Work Sans', sans-serif;
-    font-size: var(--body-sm);
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    color: var(--primary);
-    text-decoration: none;
-    padding: var(--spacing-8) 0;
-    position: relative;
-    transition: color 0.2s ease;
+    @apply text-xs font-medium tracking-widest text-primary no-underline py-2 relative transition-colors duration-200;
   }
 
-  .navbar-link::after {
+  .nav-link::after {
     content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--primary);
-    transform: scaleX(0);
-    transition: transform 0.2s ease;
+    @apply absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 transition-transform duration-200;
   }
 
-  .navbar-link:hover,
-  .navbar-link:focus-visible {
-    color: #ffffff;
-    text-decoration: none;
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    @apply text-white no-underline;
   }
 
-  .navbar-link:hover::after,
-  .navbar-link:focus-visible::after {
-    transform: scaleX(1);
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after {
+    @apply scale-x-100;
   }
 
-  .navbar-cta {
+  .nav-cta {
     font-family: 'Work Sans', sans-serif;
-    font-size: var(--body-sm);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: #000000;
-    background: var(--primary);
-    padding: var(--spacing-12) var(--spacing-24);
-    border-radius: 0;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    border: none;
+    @apply text-xs font-semibold tracking-widest text-black bg-primary px-4 md:px-6 py-2 md:py-3 no-underline transition-all duration-200;
   }
 
-  .navbar-cta:hover,
-  .navbar-cta:focus-visible {
-    background: #ffffff;
-    color: #000000;
-    text-decoration: none;
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 767px) {
-    .navbar-container {
-      padding: var(--spacing-12) var(--spacing-20);
-    }
-
-    .navbar-logo {
-      font-size: var(--body-md);
-    }
-
-    .navbar-cta {
-      font-size: var(--body-sm);
-      padding: var(--spacing-8) var(--spacing-16);
-    }
+  .nav-cta:hover,
+  .nav-cta:focus-visible {
+    @apply bg-white text-black no-underline -translate-y-0.5;
   }
 </style>

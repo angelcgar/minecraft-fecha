@@ -9,48 +9,52 @@ interface Props {
 const { targetDate, className = '' } = Astro.props;
 ---
 
-<div class={`countdown-container ${className}`} data-target-date={targetDate.toISOString()}>
-  <div class="countdown-grid">
-    <div class="time-unit" data-unit="days">
+<div class={`w-full ${className}`} data-target-date={targetDate.toISOString()}>
+  <div class="flex justify-center items-start gap-6 md:gap-12 p-0">
+    <div class="time-block" data-unit="days">
       <div class="time-value" aria-live="polite" aria-atomic="true">
         <span class="digit" data-digit="days">00</span>
       </div>
       <div class="time-label">
-        <span class="label-text" data-label="days">días</span>
+        <span class="label-text" data-label="days">DAYS</span>
       </div>
     </div>
 
-    <div class="time-unit" data-unit="hours">
+    <div class="time-block" data-unit="hours">
       <div class="time-value" aria-live="polite" aria-atomic="true">
         <span class="digit" data-digit="hours">00</span>
       </div>
       <div class="time-label">
-        <span class="label-text" data-label="hours">horas</span>
+        <span class="label-text" data-label="hours">HOURS</span>
       </div>
     </div>
 
-    <div class="time-unit" data-unit="minutes">
+    <div class="time-block" data-unit="minutes">
       <div class="time-value" aria-live="polite" aria-atomic="true">
         <span class="digit" data-digit="minutes">00</span>
       </div>
       <div class="time-label">
-        <span class="label-text" data-label="minutes">minutos</span>
+        <span class="label-text" data-label="minutes">MINUTES</span>
       </div>
     </div>
 
-    <div class="time-unit" data-unit="seconds">
+    <div class="time-block" data-unit="seconds">
       <div class="time-value" aria-live="polite" aria-atomic="true">
         <span class="digit" data-digit="seconds">00</span>
       </div>
       <div class="time-label">
-        <span class="label-text" data-label="seconds">segundos</span>
+        <span class="label-text" data-label="seconds">SECONDS</span>
       </div>
     </div>
   </div>
 
-  <div class="expired-message" role="alert" aria-live="assertive" hidden>
-    <h2 class="expired-title">¡La actualización ya está disponible!</h2>
-    <p class="expired-description">Es hora de explorar las nuevas características</p>
+  <div class="text-center py-16 px-8 hidden" role="alert" aria-live="assertive">
+    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 font-['Space_Grotesk']">
+      ¡La actualización ya está disponible!
+    </h2>
+    <p class="text-base text-on-surface-variant font-['Work_Sans']">
+      Es hora de explorar las nuevas características
+    </p>
   </div>
 </div>
 
@@ -165,84 +169,29 @@ const { targetDate, className = '' } = Astro.props;
 </script>
 
 <style>
-  .countdown-container {
-    width: 100%;
-  }
+  @reference "../styles/global.css";
 
-  .countdown-grid {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: var(--spacing-48, 3rem);
-    padding: 0;
-  }
-
-  @media (max-width: 767px) {
-    .countdown-grid {
-      gap: var(--spacing-24, 1.5rem);
-    }
-  }
-
-  .time-unit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-12, 0.75rem);
-    background: transparent;
-    padding: 0;
-    border-radius: 0;
-    position: relative;
+  .time-block {
+    @apply flex flex-col items-center gap-3 bg-black/80 backdrop-blur-sm px-6 py-8 md:px-10 md:py-12 border border-primary/20;
   }
 
   .time-value {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(3rem, 8vw, 5rem);
-    font-weight: 700;
-    line-height: 1;
-    color: var(--primary, #8cda70);
+    @apply text-5xl md:text-7xl lg:text-8xl font-bold leading-none text-primary;
     letter-spacing: -0.02em;
   }
 
   .digit {
-    display: inline-block;
-    min-width: 2ch;
-    text-align: center;
+    @apply inline-block min-w-[2ch] text-center;
     font-variant-numeric: tabular-nums;
   }
 
   .time-label {
     font-family: 'Work Sans', sans-serif;
-    font-size: var(--body-sm, 0.75rem);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--on-surface-variant, #c2c7ce);
+    @apply text-[0.65rem] md:text-xs font-medium uppercase tracking-[0.2em] text-on-surface-variant;
   }
 
   .label-text {
-    display: inline-block;
-  }
-
-  .expired-message {
-    text-align: center;
-    padding: var(--spacing-64, 4rem) var(--spacing-32, 2rem);
-    background: transparent;
-    border-radius: 0;
-  }
-
-  .expired-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: var(--display-md, 2.75rem);
-    font-weight: 700;
-    color: var(--primary, #8cda70);
-    margin: 0 0 var(--spacing-16, 1rem) 0;
-    line-height: 1.2;
-  }
-
-  .expired-description {
-    font-family: 'Work Sans', sans-serif;
-    font-size: var(--body-lg, 1rem);
-    color: var(--on-surface-variant, #c2c7ce);
-    margin: 0;
+    @apply inline-block;
   }
 </style>
